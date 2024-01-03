@@ -1,0 +1,46 @@
+name: Release Build
+description: Release a Nuon build.
+inputs:
+  org_id:
+    description: Your Nuon org.
+    required: true
+  api_token:
+    description: You Nuon API token.
+    required: true
+  build_id:
+    description: The build to release.
+    required: false
+  component_id:
+    description: Instead of specifying a build, use the latest build of a component.
+    required: false
+  delay:
+    description: How long to wait between each release step.
+    required: false
+    default: '10s'
+  installs_per_step:
+    description: How many installs to deploy per release step.
+    required: false
+    default: 10
+outputs:
+  release_id:
+    description: The release that was created.
+runs:
+  using: composite
+  steps:
+    - name: Set up path
+      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
+    - name: Install CLI
+      run: install.sh
+      shell: bash
+    - name: Create release
+      run: release.sh
+      shell: bash
+      env:
+        NUON_ORG_ID: ${{ inputs.org_id }}
+        NUON_API_TOKEN: ${{ inputs.api_token }}
+        BUILD_ID: ${{ inputs.build_id }}
+        COMPONENT_ID: ${{ inputs.component_id }}
+        DELAY: ${{ inputs.delay }}
+        INSTALLS_PER_STEP: ${{ inputs.installs_per_step }}
+        NUON_API_URL: https://ctl.stage.nuon.co
