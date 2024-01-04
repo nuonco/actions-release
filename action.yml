@@ -24,6 +24,10 @@ inputs:
     description: How many installs to deploy per release step.
     required: false
     default: 10
+  api_url:
+    description: The URL of the Nuon API.
+    required: false
+    default: https://ctl.prod.nuon.co
 outputs:
   release_id:
     description: The release that was created.
@@ -46,4 +50,4 @@ runs:
         COMPONENT_ID: ${{ inputs.component_id }}
         DELAY: ${{ inputs.delay }}
         INSTALLS_PER_STEP: ${{ inputs.installs_per_step }}
-        NUON_API_URL: https://ctl.stage.nuon.co
+        NUON_API_URL: ${{ inputs.api_url }}
