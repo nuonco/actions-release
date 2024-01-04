@@ -1,4 +1,4 @@
-# Release Build
+# Nuon Release
 
 This action will create a new release of a build.
 

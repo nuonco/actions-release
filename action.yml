@@ -1,5 +1,8 @@
-name: Release Build
+name: Nuon Release
 description: Release a Nuon build.
+branding:
+  icon: truck
+  color: purple
 inputs:
   org_id:
     description: Your Nuon org.
