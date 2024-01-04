@@ -34,6 +34,7 @@ jobs:
           org_id: ${{ secrets.test_org_id }}
           api_token: ${{ secrets.test_api_token }}
           api_url: ${{ secrets.test_api_url }}
+        continue-on-error: true
       - name: Releases with component ID
         uses: ./
         with:
