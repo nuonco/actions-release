@@ -24,6 +24,10 @@ inputs:
     description: How many installs to deploy per release step.
     required: false
     default: 10
+  auto_build:
+    description: Create a new build for this release. Will only be used with `component_id`. If `build_id` is provided, this will be ignored.
+    required: false
+    default: false
   api_url:
     description: The URL of the Nuon API.
     required: false
@@ -50,4 +54,5 @@ runs:
         COMPONENT_ID: ${{ inputs.component_id }}
         DELAY: ${{ inputs.delay }}
         INSTALLS_PER_STEP: ${{ inputs.installs_per_step }}
+        AUTO_BUILD: ${{ inputs.auto_build }}
         NUON_API_URL: ${{ inputs.api_url }}
