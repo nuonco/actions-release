@@ -1,5 +1,5 @@
 ---
-name: pull request checks
+name: Integration tests
 "on":
   pull_request:
     types: [opened, synchronize]
