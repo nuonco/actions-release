@@ -39,3 +39,11 @@ jobs:
           api_token: ${{ secrets.test_api_token }}
           build_id: ${{ secrets.test_build_id }}
           api_url: ${{ secrets.test_api_url }}
+      - name: Releases with component ID and auto-build
+        uses: ./
+        with:
+          org_id: ${{ secrets.test_org_id }}
+          api_token: ${{ secrets.test_api_token }}
+          component_id: ${{ secrets.test_component_id }}
+          auto_build: true
+          api_url: ${{ secrets.test_api_url }}
