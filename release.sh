@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ ! -z "$BUILD_ID" ]; then
     echo "releasing build \"$BUILD_ID\""
     nuon releases create -j -b $BUILD_ID \
