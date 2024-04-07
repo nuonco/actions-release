@@ -10,6 +10,9 @@ inputs:
   api_token:
     description: You Nuon API token.
     required: true
+  app_id:
+    description: The Nuon app the component belongs to (only required if you have multiple apps).
+    required: false
   build_id:
     description: The build to release.
     required: false
@@ -56,3 +59,4 @@ runs:
         INSTALLS_PER_STEP: ${{ inputs.installs_per_step }}
         AUTO_BUILD: ${{ inputs.auto_build }}
         NUON_API_URL: ${{ inputs.api_url }}
+        NUON_APP_ID: ${{ inputs.app_id }}
