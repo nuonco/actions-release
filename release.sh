@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -o pipefail
 
 if [ ! -z "$BUILD_ID" ]; then
     echo "releasing build \"$BUILD_ID\""
