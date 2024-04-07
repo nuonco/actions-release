@@ -42,6 +42,7 @@ inputs:
 outputs:
   release_id:
     description: The release that was created.
+    value: ${{ steps.release.outputs.release_id }}
 runs:
   using: composite
   steps:
@@ -52,6 +53,7 @@ runs:
       run: install.sh || exit 1
       shell: bash
     - name: Create release
+      id: release
       run: release.sh || exit 1
       shell: bash
       env:
