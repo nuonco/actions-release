@@ -2,7 +2,10 @@
 
 if [ ! -z "$BUILD_ID" ]; then
     echo "releasing build \"$BUILD_ID\""
-    nuon releases create -j -b $BUILD_ID --delay $DELAY --installs-per-step $INSTALLS_PER_STEP | jq -r '"RELEASE_ID=\(.id)"' >> $GITHUB_OUTPUT
+    nuon releases create -j -b $BUILD_ID \
+      --delay $DELAY \
+      --installs-per-step $INSTALLS_PER_STEP \
+      | jq -r '"RELEASE_ID=\(.id)"' >> $GITHUB_OUTPUT
     exit 0
 fi
 
@@ -13,7 +16,8 @@ if [ ! -z "$COMPONENT_ID" ]; then
       nuon releases create -j -b $COMPONENT_ID \
         --delay $DELAY \
         --installs-per-step $INSTALLS_PER_STEP \
-        --latest-build | jq -r '"RELEASE_ID=\(.id)"' >> $GITHUB_OUTPUT
+        --latest-build \
+        | jq -r '"RELEASE_ID=\(.id)"' >> $GITHUB_OUTPUT
       exit 0
     fi
 
@@ -22,7 +26,8 @@ if [ ! -z "$COMPONENT_ID" ]; then
       nuon releases create -j -b $COMPONENT_ID \
         --delay $DELAY \
         --installs-per-step $INSTALLS_PER_STEP \
-        --auto-build | jq -r '"RELEASE_ID=\(.id)"' >> $GITHUB_OUTPUT
+        --auto-build \
+        | jq -r '"RELEASE_ID=\(.id)"' >> $GITHUB_OUTPUT
       exit 0
     fi
 
