@@ -27,6 +27,10 @@ inputs:
     description: How many installs to deploy per release step.
     required: false
     default: 10
+  latest_build:
+    description: Use the latest build for this component
+    required: false
+    default: false
   auto_build:
     description: Create a new build for this release. Will only be used with `component_id`. If `build_id` is provided, this will be ignored.
     required: false
@@ -55,6 +59,7 @@ runs:
         NUON_API_TOKEN: ${{ inputs.api_token }}
         BUILD_ID: ${{ inputs.build_id }}
         COMPONENT_ID: ${{ inputs.component_id }}
+        LATEST_BUILD: ${{ inputs.latest_build }}
         DELAY: ${{ inputs.delay }}
         INSTALLS_PER_STEP: ${{ inputs.installs_per_step }}
         AUTO_BUILD: ${{ inputs.auto_build }}
