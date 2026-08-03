@@ -1,69 +1,13 @@
-name: Nuon Release
-description: Release a Nuon build.
+name: Nuon Release (retired)
+description: This action is retired because Nuon releases are no longer supported.
 branding:
   icon: truck
   color: purple
-inputs:
-  org_id:
-    description: Your Nuon org.
-    required: true
-  api_token:
-    description: You Nuon API token.
-    required: true
-  app_id:
-    description: The Nuon app the component belongs to (only required if you have multiple apps).
-    required: false
-  build_id:
-    description: The build to release.
-    required: false
-  component_id:
-    description: Instead of specifying a build, use the latest build of a component.
-    required: false
-  delay:
-    description: How long to wait between each release step.
-    required: false
-    default: '10s'
-  installs_per_step:
-    description: How many installs to deploy per release step.
-    required: false
-    default: 10
-  latest_build:
-    description: Use the latest build for this component
-    required: false
-    default: false
-  auto_build:
-    description: Create a new build for this release. Will only be used with `component_id`. If `build_id` is provided, this will be ignored.
-    required: false
-    default: false
-  api_url:
-    description: The URL of the Nuon API.
-    required: false
-    default: https://ctl.prod.nuon.co
-outputs:
-  release_id:
-    description: The release that was created.
-    value: ${{ steps.release.outputs.release_id }}
 runs:
   using: composite
   steps:
-    - name: Set up path
-      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+    - name: Nuon Release action retired
       shell: bash
-    - name: Install CLI
-      run: install.sh || exit 1
-      shell: bash
-    - name: Create release
-      id: release
-      run: release.sh || exit 1
-      shell: bash
-      env:
-        NUON_ORG_ID: ${{ inputs.org_id }}
-        NUON_API_TOKEN: ${{ inputs.api_token }}
-        BUILD_ID: ${{ inputs.build_id }}
-        COMPONENT_ID: ${{ inputs.component_id }}
-        LATEST_BUILD: ${{ inputs.latest_build }}
-        DELAY: ${{ inputs.delay }}
-        INSTALLS_PER_STEP: ${{ inputs.installs_per_step }}
-        AUTO_BUILD: ${{ inputs.auto_build }}
-        NUON_API_URL: ${{ inputs.api_url }}
-        NUON_APP_ID: ${{ inputs.app_id }}
+      run: |
+        echo "::error::nuonco/actions-release is retired because the Nuon release API was removed. Use app branches for multi-install rollouts or 'nuon installs components deploy' for one install."
+        exit 1
